@@ -14,3 +14,14 @@ export function getPeople(): Promise<Person[]> {
     .then(() => fetch(API_URL))
     .then(response => response.json());
 }
+
+enum PeopleErrorMessages {
+  ERROR = 'Unknown',
+
+}
+
+export const PeopleErrorMessagesText: Record<PeopleErrorMessages, string> = {
+  [PeopleErrorMessages.ERROR]: 'Something went wrong.',
+ 
+};
+
