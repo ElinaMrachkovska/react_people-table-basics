@@ -17,11 +17,8 @@ export function getPeople(): Promise<Person[]> {
 
 enum PeopleErrorMessages {
   ERROR = 'Unknown',
-
 }
 
 export const PeopleErrorMessagesText: Record<PeopleErrorMessages, string> = {
   [PeopleErrorMessages.ERROR]: 'Something went wrong.',
- 
 };
-

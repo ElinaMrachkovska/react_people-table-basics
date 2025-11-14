@@ -5,11 +5,10 @@
 
 // import { NotFound } from './pages/NotFound';
 
-
 // export const router = createHashRouter([
 //     {
 //         path: '/',
-//         element: <App />, 
+//         element: <App />,
 //         children: [
 //             {
 //                 index: true,
