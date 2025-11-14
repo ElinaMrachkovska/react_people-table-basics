@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   return (
     <nav
@@ -14,11 +14,13 @@ export const Navbar: React.FC = () => {
     >
       <div className="container">
         <div className="navbar-brand">
-          <NavLink to="/" className={({ isActive } : { isActive: boolean }) =>
-            cn('navbar-item', {
-              'has-background-grey-lighter': isActive,
-            })
-          }
+          <NavLink
+            to="/"
+            className={({ isActive }: { isActive: boolean }) =>
+              cn('navbar-item', {
+                'has-background-grey-lighter': isActive || pathname === '/' || hash === '#/',
+              })
+            }
           >
             Home
           </NavLink>
