@@ -1,6 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
-import { Link, useLocation } from 'react-router-dom';
+import cn from 'classnames';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
   const { pathname } = useLocation();
@@ -14,17 +14,17 @@ export const Navbar: React.FC = () => {
     >
       <div className="container">
         <div className="navbar-brand">
-          <Link
-            className={classNames('navbar-item', {
-              'has-background-grey-lighter': pathname === '/',
-            })}
-            to="/"
+          <NavLink to="/" className={({ isActive } : { isActive: boolean }) =>
+            cn('navbar-item', {
+              'has-background-grey-lighter': isActive,
+            })
+          }
           >
             Home
-          </Link>
+          </NavLink>
 
           <Link
-            className={classNames('navbar-item', {
+            className={cn('navbar-item', {
               'has-background-grey-lighter': pathname.startsWith('/people'),
             })}
             to="/people"
