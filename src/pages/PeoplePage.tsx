@@ -4,7 +4,7 @@ import { Person } from '../types';
 import { useParams } from 'react-router-dom';
 import { Loader } from '../components/Loader';
 import { PeopleTable } from './PeopleTable';
-import { getPeople } from '../api';
+import { getPeople, PeopleErrorMessagesText } from '../api';
 
 export const PeoplePage: React.FC = () => {
   const [people, setPeople] = useState<Person[]>([]);
@@ -23,7 +23,7 @@ export const PeoplePage: React.FC = () => {
 
         setPeople(data);
       } catch {
-        setError('Something went wrong');
+        setError(PeopleErrorMessagesText.LOADING_ERROR);
       } finally {
         setLoading(false);
       }
@@ -44,7 +44,7 @@ export const PeoplePage: React.FC = () => {
           </p>
         )}
         {!loading && !error && people.length === 0 && (
-          <p data-cy="noPeopleMessage">There are no people on the server</p>
+          <p data-cy="noPeopleMessage">{PeopleErrorMessagesText.NO_PEOPLE}</p>
         )}
 
         {!loading && !error && people.length > 0 && (

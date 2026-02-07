@@ -8,8 +8,14 @@ type Props = {
   selectedSlug?: string;
 };
 
+
 export const PeopleTable: FC<Props> = ({ people, selectedSlug }) => {
-  return (
+
+    const findPersonByName = (name: string | null) => {
+      if (!name) return null;
+      return people.find(p => p.name === name) || null;
+    };
+      return (
     <>
       <div className="box table-container">
         <table
@@ -28,29 +34,36 @@ export const PeopleTable: FC<Props> = ({ people, selectedSlug }) => {
           </thead>
 
           <tbody>
-            {people.map(person => (
-              <tr
-                key={person.slug}
-                data-cy="person"
-                className={classNames({
-                  'has-background-warning': person.slug === selectedSlug,
-                })}
-              >
-                <td>
-                  <PersonLink name={person.name} people={people} />
-                </td>
+            {people.map(person => {
+              const mother = findPersonByName(person.motherName);
+              const father = findPersonByName(person.fatherName);
+              return (
+                <tr
+                  key={person.slug}
+                  data-cy="person"
+                  className={classNames({
+                    'has-background-warning': person.slug === selectedSlug,
+                  })}
+                >
+                  <td>
+                    <PersonLink person={person} />
+                  </td>
 
                 <td>{person.sex}</td>
                 <td>{person.born}</td>
                 <td>{person.died}</td>
-                <td>
-                  <PersonLink name={person.motherName} people={people} />
+                <td> {mother ? (
+                  <PersonLink person={mother} />
+                ) : ( person.motherName || '-'
+                )}
                 </td>
-                <td>
-                  <PersonLink name={person.fatherName} people={people} />
+                <td> {father ? (
+                  <PersonLink person={father} />
+                ) : ( person.fatherName || '-'
+                )}
                 </td>
               </tr>
-            ))}
+)})}
           </tbody>
         </table>
       </div>
