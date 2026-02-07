@@ -3,8 +3,8 @@ import { Person } from './types/Person';
 // eslint-disable-next-line operator-linebreak
 const API_URL =
   'https://mate-academy.github.io/react_people-table/api/people.json';
-  
-  export const PeopleErrorMessagesText = {
+
+export const PeopleErrorMessagesText = {
   LOADING_ERROR: 'Something went wrong',
   NO_PEOPLE: 'There are no people on the server',
 } as const;
@@ -19,4 +19,3 @@ export function getPeople(): Promise<Person[]> {
     .then(() => fetch(API_URL))
     .then(response => response.json());
 }
-
